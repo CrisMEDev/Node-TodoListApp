@@ -49,7 +49,7 @@ const inquirerMenu = async() => {
     console.log('**************************\n'.cyan);
 
     // De acuerdo al name asignado, se aplica desestructuración de objetos
-    const {opcion} = optSelected = await inquirer.prompt(menuOptions);
+    const {opcion} = await inquirer.prompt(menuOptions);
 
     return opcion;
 }
@@ -88,10 +88,33 @@ const leerInput = async( mensaje ) => {
     return descripcion;
 }
 
+const listadoBorrarTareas = async(tareas = []) => {
+    const choices = tareas.map( ( tarea, i ) => {
+        return {
+            value: tarea.id,
+            name: `${ i + 1 }. ${ tarea.descripcion }`.cyan
+        }
+    });
+
+    const preguntas = [
+        {
+            type: 'list',
+            name: 'id',
+            message: 'Borrar',
+            choices
+        }
+    ]
+
+    const {id} = await inquirer.prompt(preguntas);
+
+    return id;
+}
+
 
 module.exports = {
     inquirerMenu,
     pausa,
-    leerInput
+    leerInput,
+    listadoBorrarTareas
 }
 
