@@ -1,4 +1,4 @@
-const { guardarDB } = require("./helpers/guardar_datos");
+const { guardarDB, leerDB } = require("./helpers/guardar_datos");
 const { 
     inquirerMenu,
     pausa,
@@ -12,6 +12,12 @@ const main = async() => {
 
     let opt = '';
     const tareas = new Tareas();
+
+    const tareasFile = leerDB();
+
+    if ( tareasFile ){
+        tareas.cargarTareasFromArr( tareasFile );
+    }
 
     do {
 
@@ -41,7 +47,7 @@ const main = async() => {
 
         }
 
-        // guardarDB( tareas.listadoArr );
+        guardarDB( tareas.listadoArr );
 
         if ( opt !== '0' ) await pausa();
         console.log('\n');
