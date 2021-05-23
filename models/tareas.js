@@ -1,3 +1,5 @@
+require('colors');
+
 const Tarea = require("./tarea");
 
 class Tareas {
@@ -30,6 +32,20 @@ class Tareas {
 
         this._listadotareas[tarea.id] = tarea;      // Crea una nueva tarea dentro del objeto con clave tarea.id y
                                                     // valor un objeto de tipo tarea
+
+    }
+
+    listarTareas(){
+        
+        console.log('');
+        for (let i = 0; i < this.listadoArr.length; i++ ){
+            process.stdout.write( `${ ((i + 1).toString() + '. ').green }` );
+            process.stdout.write(  `${ (this.listadoArr[i].descripcion + ' :: ').cyan }` );
+            ( this.listadoArr[i].completadoEn === null )
+                ? process.stdout.write(  `Pendiente\n`.red )
+                : process.stdout.write(  `Completado\n`.green );
+        }
+        console.log('');
 
     }
 
