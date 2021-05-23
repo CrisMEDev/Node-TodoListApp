@@ -4,6 +4,16 @@ class Tareas {
 
     _listadotareas = {};
 
+    get listadoArr(){
+        const listado = [];
+
+        Object.keys(this._listadotareas).forEach( ( key ) => { // Extrae cada una de las llaves en el objeto y las cicla
+            listado.push(this._listadotareas[key]);
+        });
+
+        return listado;
+    }
+    
     constructor(){
         this._listadotareas = {};
     }
