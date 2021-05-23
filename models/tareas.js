@@ -49,6 +49,30 @@ class Tareas {
 
     }
 
+    listarPendientesCommpletadas( completadas = true ){
+
+        console.log('');
+
+        let numTarea = 1;
+
+        if ( completadas ){
+            for (let i = 0; i < this.listadoArr.length; i++ ){
+                if ( this.listadoArr[i].completadoEn ){
+                    console.log( `${numTarea}. ${this.listadoArr[i].descripcion}`.green );
+                    numTarea++;
+                }
+            }
+        } else{
+            for (let i = 0; i < this.listadoArr.length; i++ ){
+                if ( !this.listadoArr[i].completadoEn ){
+                    console.log( `${numTarea}. ${this.listadoArr[i].descripcion}`.green );
+                    numTarea++;
+                }
+            }
+        }
+        console.log('');
+    }
+
 }
 
 

@@ -30,12 +30,13 @@ const main = async() => {
                 tareas.crearTarea(desc);    // Se manda la tarea escrita por el usuario
                 break;
             case '2':
-                // console.log( tareas._listadotareas );
                 tareas.listarTareas();
                 break;
             case '3':
+                tareas.listarPendientesCommpletadas();
                 break;
             case '4':
+                tareas.listarPendientesCommpletadas(false);
                 break;
             case '5':
                 break;
