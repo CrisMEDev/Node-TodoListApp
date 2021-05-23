@@ -1,3 +1,4 @@
+const { guardarDB } = require("./helpers/guardar_datos");
 const { 
     inquirerMenu,
     pausa,
@@ -39,6 +40,8 @@ const main = async() => {
                 console.log('Seleccione una opción válida');
 
         }
+
+        // guardarDB( tareas.listadoArr );
 
         if ( opt !== '0' ) await pausa();
         console.log('\n');
