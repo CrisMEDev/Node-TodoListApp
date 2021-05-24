@@ -131,12 +131,36 @@ const confirmar = async( message ) => {
 
 }
 
+const mostrarListadoChecks = async(tareas = []) => {
+    const choices = tareas.map( ( tarea, i ) => {
+        return {
+            value: tarea.id,
+            name: `${ i + 1 }. ${ tarea.descripcion }`.cyan,
+            checked: ( tarea.completadoEn ) ? true : false      // Marca las tareas completadas
+        }
+    });
+
+    const pregunta = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Selecciones',
+            choices
+        }
+    ]
+
+    const { ids } = await inquirer.prompt(pregunta);
+
+    return ids;
+}
+
 
 module.exports = {
     inquirerMenu,
     pausa,
     leerInput,
     listadoBorrarTareas,
-    confirmar
+    confirmar,
+    mostrarListadoChecks
 }
 

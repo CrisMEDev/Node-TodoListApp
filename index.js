@@ -5,6 +5,7 @@ const {
     leerInput,
     listadoBorrarTareas,
     confirmar,
+    mostrarListadoChecks,
 } = require("./helpers/inquirer");
 const Tareas = require("./models/tareas");
 
@@ -27,22 +28,24 @@ const main = async() => {
         // console.log(opt);
 
         switch( opt ){
-            case '1':
+            case '1':   // --- Crear tarea ---
                 const desc = await leerInput('Tarea:');
                 tareas.crearTarea(desc);    // Se manda la tarea escrita por el usuario
                 break;
-            case '2':
+            case '2':   // --- Mostrar tareas ---
                 tareas.listarTareas();
                 break;
-            case '3':
+            case '3':   // --- Mostrar completadas ---
                 tareas.listarPendientesCompletadas();
                 break;
-            case '4':
+            case '4':   // --- Mostrar pendientes ---
                 tareas.listarPendientesCompletadas(false);
                 break;
-            case '5':
+            case '5':   // // --- Seleccionar para completar ---
+                const ids = await mostrarListadoChecks( tareas.listadoArr );
+                console.log(ids);
                 break;
-            case '6':
+            case '6':   // --- Borrar tarea ---
                 const id = await listadoBorrarTareas( tareas.listadoArr );
                 if ( id !== '0' ){
                     const ok = await confirmar('¿Está seguro que desea borrar esta tarea?');
