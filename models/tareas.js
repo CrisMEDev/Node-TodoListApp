@@ -55,7 +55,7 @@ class Tareas {
 
     }
 
-    listarPendientesCommpletadas( completadas = true ){
+    listarPendientesCompletadas( completadas = true ){
 
         console.log('');
 

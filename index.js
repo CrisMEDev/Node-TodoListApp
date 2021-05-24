@@ -3,7 +3,8 @@ const {
     inquirerMenu,
     pausa,
     leerInput,
-    listadoBorrarTareas
+    listadoBorrarTareas,
+    confirmar,
 } = require("./helpers/inquirer");
 const Tareas = require("./models/tareas");
 
@@ -34,17 +35,24 @@ const main = async() => {
                 tareas.listarTareas();
                 break;
             case '3':
-                tareas.listarPendientesCommpletadas();
+                tareas.listarPendientesCompletadas();
                 break;
             case '4':
-                tareas.listarPendientesCommpletadas(false);
+                tareas.listarPendientesCompletadas(false);
                 break;
             case '5':
                 break;
             case '6':
                 const id = await listadoBorrarTareas( tareas.listadoArr );
-                // TODO: Preguntar si está seguro
-                console.log(id);
+                if ( id !== '0' ){
+                    const ok = await confirmar('¿Está seguro que desea borrar esta tarea?');
+    
+                    if ( ok ) {
+                        tareas.borrarTarea( id );
+                        console.log('Tarea borrada');
+                    }
+                }
+                
                 break;
             case '0':
                 break;
