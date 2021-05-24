@@ -43,7 +43,7 @@ const main = async() => {
                 break;
             case '5':   // // --- Seleccionar para completar ---
                 const ids = await mostrarListadoChecks( tareas.listadoArr );
-                console.log(ids);
+                tareas.toggleTareas(ids);
                 break;
             case '6':   // --- Borrar tarea ---
                 const id = await listadoBorrarTareas( tareas.listadoArr );
